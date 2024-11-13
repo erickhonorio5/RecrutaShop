@@ -1,15 +1,26 @@
 services:
   catalogdb:
     image: postgres:latest
+  identitydb:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
 
-  # catalog.api:
-  #   image: ${DOCKER_REGISTRY-}catalogapi
-  #   build:
-  #     context: .
-  #     dockerfile: Services/Catalog/Catalog.API/Dockerfile
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+
+  auth.api:
+    image: ${DOCKER_REGISTRY-}authapi
+    build:
+      context: .
+      dockerfile: Services/Users/Auth.API/Dockerfile
 
 volumes:
   postgres_catalog:
+  sqlserver_identity:
+
+
 
 
 
