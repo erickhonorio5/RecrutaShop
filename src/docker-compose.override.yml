@@ -30,8 +30,8 @@ services:
     depends_on:
       - catalogdb
     ports:
-      - "6000:8080"
-      - "6060:8081"
+      - "5050:8080" #localhost
+      - "6060:8081" #Docker
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -45,8 +45,8 @@ services:
     depends_on:
       - identitydb
     ports:
-      - "6004:8080"
-      - "6064:8081"
+      - "5051:8080" # Localhost
+      - "6061:8081" # Docker
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

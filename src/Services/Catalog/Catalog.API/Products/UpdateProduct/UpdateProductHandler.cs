@@ -9,13 +9,13 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
 {
     public UpdateProductCommandValidator()
     {
-        RuleFor(command => command.Id).NotEmpty().WithMessage("Requer ID do produto!");
+        RuleFor(command => command.Id).NotEmpty().WithMessage("Requer ID do produto.");
         RuleFor(command => command.Name)
-            .NotEmpty().WithMessage("Requer o nome!")
-            .Length(2, 150).WithMessage("O nome deve conter entre 2 e 150 characters");
+            .NotEmpty().WithMessage("Nome é requirido.")
+            .Length(2, 150).WithMessage("O nome deve conter entre 2 e 150 characters.");
 
         RuleFor(command => command.Price)
-            .GreaterThan(0).WithMessage("O preço deve ser maior que zero!");
+            .GreaterThan(0).WithMessage("O preço deve ser maior que zero.");
     }
 }
 
