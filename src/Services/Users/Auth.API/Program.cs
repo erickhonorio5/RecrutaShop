@@ -8,8 +8,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionStringKey = builder.Environment.IsDevelopment()
+    ? Environment.GetEnvironmentVariable("ASPNETCORE_DOCKER") == "true"
+        ? "ConnectionDocker"
+        : "DefaultConnection"
+    : "DefaultConnection";
+
+Console.WriteLine($"Usando Connection String: {connectionStringKey}");
+Console.WriteLine($"Environment: {builder.Environment.EnvironmentName}");
+
 builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringKey)));
 
 builder.Services.AddAuthorization();
 

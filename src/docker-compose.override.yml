@@ -10,6 +10,9 @@ services:
         - "5432:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data/
+    networks:
+      - app_network
+
   identitydb:
     container_name: identitydb
     environment:
@@ -20,6 +23,8 @@ services:
       - "1433:1433"
     volumes:
       - sqlserver_identity:/var/opt/mssql
+    networks:
+      - app_network
 
   catalog.api:
     environment:
@@ -30,23 +35,32 @@ services:
     depends_on:
       - catalogdb
     ports:
-      - "5050:8080" #localhost
-      - "6060:8081" #Docker
+      - "6000:8080" # Localhost
+      - "6060:8081" # Docker
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    networks:
+      - app_network
 
   auth.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_DOCKER=true
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__IdentityDb=Server=identitydb,1433;Database=IdentityDb;User Id=sa;Password=Admin@123;TrustServerCertificate=True;
     depends_on:
       - identitydb
     ports:
-      - "5051:8080" # Localhost
-      - "6061:8081" # Docker
+      - "6004:8080" # Localhost
+      - "6064:8081" # Docker
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    networks:
+      - app_network
+    
+networks:
+  app_network:
+    driver: bridge
+  
