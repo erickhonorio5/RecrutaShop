@@ -12,7 +12,7 @@ var connectionStringKey = builder.Environment.IsDevelopment()
     ? Environment.GetEnvironmentVariable("ASPNETCORE_DOCKER") == "true"
         ? "ConnectionDocker"
         : "DefaultConnection"
-    : "DefaultConnection";
+        : "DefaultConnection";
 
 Console.WriteLine($"Usando Connection String: {connectionStringKey}");
 Console.WriteLine($"Environment: {builder.Environment.EnvironmentName}");
