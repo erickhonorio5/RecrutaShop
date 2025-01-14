@@ -10,15 +10,8 @@ services:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
 
-  auth.api:
-    image: ${DOCKER_REGISTRY-}authapi
-    build:
-      context: .
-      dockerfile: Services/Users/Auth.API/Dockerfile
-
 volumes:
   postgres_catalog:
-  sqlserver_identity:
 
 
 
