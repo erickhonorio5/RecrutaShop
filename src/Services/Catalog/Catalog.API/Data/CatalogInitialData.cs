@@ -31,7 +31,7 @@ public class CatalogInitialData : IInitialData
         {
             Id = new Guid("e138fa3e-d42c-4c84-a2d8-ec7a6a16a58f"),
             Name = "Samsung Galaxy S23",
-            Description = "Galaxy S23: design moderno, tela AMOLED de 6,1\", processador Snapdragon 8 Gen 2, câmeras profissionais com Nightography e conectividade 5G.",
+            Description = "Galaxy S23: design moderno, tela AMOLED de 6,1, processador Snapdragon 8 Gen 2, câmeras profissionais com Nightography e conectividade 5G.",
             ImageFile = "product-2.png",
             Price = 850.00M,
             Category = ["Smartphones"]
